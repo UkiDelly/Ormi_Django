@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <button id="free" type="button" >자유게시판</button>
+    <button id="oneone" type="button">1:1 문의</button>
+  </div>
+</body>
+
+<script>
+    let $freeButton = document.querySelector("#free");
+    let $oneoneButton = document.querySelector("#oneone");
+
+    $freeButton.addEventListener("click", function() {
+        window.location.href = "/notice/free";
+    });
+    $oneoneButton.addEventListener("click", function() {
+        window.location.href = "/notice/oneone";
+    });
+
+
+
+</script>
+</html>
+
+
