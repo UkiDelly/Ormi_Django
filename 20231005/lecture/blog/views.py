@@ -1,3 +1,4 @@
+import json
 from bs4 import BeautifulSoup
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
@@ -31,6 +32,14 @@ def post(request: HttpRequest, post_id: int):
     if post_id not in db:
         return render(request, "error_page.html")
     return render(request, "post.html", context={"post": db.get(post_id, None)})
+
+
+def post_data(request: HttpRequest, post_id: int):
+    res = HttpResponse(content_type="application/json")
+    res.status_code = 200
+    res.content = json.dumps(db.get(post_id, None))
+    print(res.content)
+    return res
 
 
 def bookinfo(request: HttpRequest):
