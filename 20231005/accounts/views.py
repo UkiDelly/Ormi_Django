@@ -3,5 +3,9 @@ from django.shortcuts import render
 
 
 # Create your views here.
-def index(request: HttpRequest):
-    return render(request, "index.html")
+def login(request: HttpRequest):
+    return render(request, "login.html")
+
+
+def logout(request: HttpRequest):
+    return render(request, "logout.html")

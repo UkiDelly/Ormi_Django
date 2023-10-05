@@ -1,0 +1,25 @@
+blog
+
+<!-- {{db}} -->
+<table>
+  <tr>
+    <th>제목</th>
+    <th>내용</th>
+    <th>이미지</th>
+  </tr>
+  {% for key,value in db.items %}
+  <tr>
+    <td>{{value.title}}</td>
+    <td>{{value.contents}}</td>
+    <td><img width="100" src="{{value.img}}" ></td>
+  </tr>
+  {% endfor %}
+
+</table>
+
+{% for key,value in db.items %}
+  <p>{{key}}: {{value}}</p>
+  {% if True %}
+  <p>if문 안의 구문</p>
+  {% endif %}
+{% endfor %}
