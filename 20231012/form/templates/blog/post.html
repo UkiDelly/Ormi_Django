@@ -1,0 +1,11 @@
+# tamplates > blog > post.html
+
+<h1>게시판</h1>
+<p>{{post.title}}</p>
+<p>{{post.content}}</p>
+<p>{{post.updated_at}}</p>
+{% if post.main_image %}
+<img src="{{ post.main_image.url }}" alt="" />
+{% endif %}
+<a href="{% url 'blog' %}">뒤로가기</a>
+<p>{{post.main_image}}</p>
