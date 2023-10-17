@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ko-KR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ tube.title }}</title>
+</head>
+<body>
+
+<h1>
+    {{ tube.title }}
+</h1>
+
+<p>
+    {{ tube.content }}
+</p>
+
+<p>조회수 {{ tube.view_count }}</p>
+<img src="/media/{{ tube.thumbnail }}" alt="thumbnail"/>
+{% if tube.video %}
+    <video width="320" height="240" controls>
+        <source src="{{ tube.video.url }}">
+    </video>
+{% endif %}
+
+
+<div>
+    <p>
+        {{ tube.creator }}
+    </p>
+    <p>
+        {{ tube.created_at }}
+    </p>
+</div>
+<div>
+    {% if tube.creator == user %}
+        <a href="{% url 'tube:tube_update'  tube.pk %}">수정하기</a>
+        <a href="{% url 'tube:tube_delete' tube.pk %}">삭제하기</a>
+    {% endif %}
+</div>
+
+
+<div>
+    {% for tag in tube.tags.all %}
+        <a href="{% url 'tube:tube_list' %}?tag={{ tag }}"> {{ tag }}</a>
+    {% endfor %}
+</div>
+
+<section>
+    <h3>댓글</h3>
+    {% for comment in tube.comments.all %}
+        <p>{{ comment.content }}</p>
+        <p>{{ comment.creator }}</p>
+        <p>{{ comment.updated_at }}</p>
+    {% endfor %}
+</section>
+
+<section>
+    <h3>댓글 작성</h3>
+    <form action="/tube/{{ tube.pk }}/comment/new" method="post">
+        {% csrf_token %}
+        {{ comment_form.as_table }}
+        <input type="submit" value="댓글 작성">
+    </form>
+</section>
+
+</body>
+</html>
